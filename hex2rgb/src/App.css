@@ -1,0 +1,46 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.color-picker {
+  width: 300px;
+  height: 100%;
+  margin: 200px auto;
+  position: absolute;
+  top: 40px;
+  left: 50vh;
+}
+
+.hex-input {
+  width: 220px;
+  height: 40px;
+  margin: 0 50px;
+  border: solid 1px black;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+  background-color: white;
+}
+
+.result-container {
+  width: 220px;
+  height: 40px;
+  margin: 5px 50px 0;
+  border: solid 1px black;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-text {
+  color: white;
+  text-align: center;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+}

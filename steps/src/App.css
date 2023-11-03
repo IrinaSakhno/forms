@@ -1,0 +1,94 @@
+
+.form {
+  display: flex;
+  gap: 20px;
+}
+
+.field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.form-input {
+  text-align: center;
+  width: 130px;
+}
+
+.input-label {
+  text-align: center;
+}
+
+.button {
+ width: 60px;
+ background-color: transparent;
+}
+
+.link {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.link:hover {
+  opacity: 0.75;
+  transition: opacity 0.1s ease;
+}
+
+.history-container {
+  margin-top: 30px;
+}
+.history {
+  width: 380px;
+  min-height: 100px;
+  border: solid 1px black;
+  border-radius: 3px;
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+}
+
+.history-header {
+  width: 450px;
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+}
+
+.column-name-container {
+  width: 130px;
+  text-align: center;
+}
+
+.column-name {
+  text-align: center;
+}
+
+.one-day-history {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+.training-date {
+  margin: 0;
+}
+
+.training-result{
+  margin: 0;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 10px;
+}
+
+.history-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 10px;
+  height: 10px;
+}
