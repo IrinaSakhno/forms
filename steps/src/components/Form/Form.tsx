@@ -1,12 +1,14 @@
 import "../../App.css";
-import { useState } from "react";
-import {Training} from "../../App";
+import { useEffect, useState } from "react";
+import { Training } from "../../App";
 
 interface Props {
-    onSubmit: (training: Training) => void,
-  }
+  onSubmit: (training: Training) => void;
+  editingDate?: string;
+  editingDistance?: number;
+}
 
-const Form = ({onSubmit}: Props) => {
+const Form = ({ onSubmit, editingDate, editingDistance }: Props) => {
   interface Form {
     date: string;
     distance: number;
@@ -17,20 +19,36 @@ const Form = ({onSubmit}: Props) => {
     distance: 0,
   });
 
+  useEffect(() => {
+    setForm({
+      date: editingDate || "",
+      distance: editingDistance || 0,
+    });
+  }, [editingDate, editingDistance]);
+
   const handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void = (
     evt: React.FormEvent<HTMLFormElement>
   ) => {
     evt.preventDefault();
-    const newTraining = {
+    let newTraining;
+    console.log('newTraining: ' + newTraining)
+    if (editingDistance) {
+      newTraining = {
         date: new Date(form.date),
-        distance: form.distance
-    };
+        distance: form.distance-editingDistance,
+      };
+    } else {
+      newTraining = {
+        date: new Date(form.date),
+        distance: form.distance,
+      };
+    }
     setForm({
       date: "",
       distance: 0,
     });
+    console.log('newTraining 2: ' + JSON.stringify(newTraining))
     return onSubmit(newTraining);
-
   };
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +59,9 @@ const Form = ({onSubmit}: Props) => {
   return (
     <form className="form" name="form" noValidate onSubmit={handleSubmit}>
       <div className="field-container">
-        <label htmlFor="date" className="input-label">Дата (ДД.ММ.ГГ)</label>
+        <label htmlFor="date" className="input-label">
+          Дата (ДД.ММ.ГГ)
+        </label>
         <input
           className="form-input"
           name="date"
@@ -53,7 +73,9 @@ const Form = ({onSubmit}: Props) => {
         ></input>
       </div>
       <div className="field-container">
-        <label htmlFor="date" className="input-label">Пройдено км</label>
+        <label htmlFor="date" className="input-label">
+          Пройдено км
+        </label>
         <input
           className="form-input"
           name="distance"
@@ -66,9 +88,10 @@ const Form = ({onSubmit}: Props) => {
         ></input>
       </div>
       <div className="field-container">
-        <button className="button link" type="submit">ОК</button>
+        <button className="button link" type="submit">
+          ОК
+        </button>
       </div>
-      
     </form>
   );
 };

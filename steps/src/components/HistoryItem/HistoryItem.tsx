@@ -4,7 +4,7 @@ import { Training } from "../../App";
 interface Props {
     training: Training,
     onDelete: (training: Training) => void,
-    onEdit: (event: React.MouseEvent<HTMLElement>) => void,
+    onEdit: (training: Training) => void,
 }
 
 const HistoryItem = ({training, onDelete, onEdit}: Props) => {
@@ -12,17 +12,21 @@ const HistoryItem = ({training, onDelete, onEdit}: Props) => {
         return onDelete(training);
       };
 
+      const handleEdit = () => {
+        return onEdit(training);
+      };
+
       const { date } = training;
-  
+
     return (
     <li className="one-day-history">
-      <p className="training-date">{`${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`}</p>
+      <p className="training-date">{`${date.getDate() < 9 ? '0'  : ''}${date.getDate()}.${date.getMonth() < 9 ? '0'  : ''}${date.getMonth()+1}.${date.getFullYear()}`}</p>
       <p className="training-result">{training.distance}</p>
       <div className="buttons-container">
         <button
           type="button"
           className="history-button button-edit link"
-          onClick={onEdit}
+          onClick={handleEdit}
         >
           ✎
         </button>

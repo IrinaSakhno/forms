@@ -5,14 +5,10 @@ import {Training} from "../../App";
 interface Props {
   items: Training[],
   onDelete: (training: Training) => void,
+  onEdit: (training: Training) => void,
 }
 
-const History = ({items, onDelete}: Props) => {
-
-  const handleEdit = () => {
-    console.log("edit");
-  };
-
+const History = ({items, onDelete, onEdit}: Props) => {
   
   return (
     <>
@@ -34,7 +30,7 @@ const History = ({items, onDelete}: Props) => {
               training={item}
               key={i}
               onDelete={onDelete}
-              onEdit={handleEdit}
+              onEdit={onEdit}
             />
           ))}
         </ul>

@@ -16,7 +16,7 @@ function App() {
   const itemsList = [
       {
         id: 0,
-        date: new Date(2001, 1, 20),
+        date: new Date(2008, 1, 20),
         distance: 10,
       },
       {
@@ -31,6 +31,9 @@ function App() {
       },
     ];
     const [items, setItems] = useState<Training[]>(itemsList as Training[]);
+
+    const [editingDate, setEditingDate] = useState<string>();
+    const [editingDistance, setEditingDistance] = useState<number>();
 
     const handleDelete = (line: Training) => {
       const lineToRemove = items.findIndex((i) => {
@@ -54,16 +57,23 @@ function App() {
         setItems(newArr);
       } else {
       // if date doesnt exist:
-        newArr.push({...line, id: newArr.length+1});
+        newArr.push({...line, id: newArr.length+10});
         newArr.sort((a:Training, b:Training) => b.date.getTime() - a.date.getTime());
         setItems(newArr);
       }
     };
 
+    const handleEdit = (training: Training) => {
+      console.log('Edit click');
+      const dateToString = `${training.date.getFullYear()}-0${training.date.getMonth()+1}-${training.date.getDate()}`
+      setEditingDate(dateToString);
+      setEditingDistance(training.distance);
+    };
+
   return (
     <>
-      <Form onSubmit={handleAdd} />
-      <History items={items} onDelete={handleDelete} />
+      <Form onSubmit={handleAdd} editingDate={editingDate} editingDistance={editingDistance} />
+      <History items={items} onDelete={handleDelete} onEdit={handleEdit}/>
     </>
   );
 }
